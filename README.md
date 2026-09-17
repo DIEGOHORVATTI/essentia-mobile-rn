@@ -16,9 +16,10 @@ Fala pessoal esse é um app mobile de consulta de **pacientes** que consome a **
 - [x] Testes, CI (typecheck/lint/test) e build de APK no GitHub Actions
 - [x] Cache offline (persistência do TanStack Query em AsyncStorage)
 - [x] Testes e2e (fluxos Maestro em `.maestro/`)
+- [x] OTA updates (expo-updates + EAS Update)
 - [ ] Aba de Configurações (tema claro/escuro/sistema)
 - [ ] Teclado nativo nos bottom sheets (`react-native-keyboard-controller`, dev build)
-- [ ] Firebase Analytics (abstração pronta em `lib/analytics.ts`) não vi necessidade de usar nem consigui pensar em um case de uso kk
+- [ ] Firebase Analytics: **camada de abstração pronta** em `lib/analytics.ts` (eventos já instrumentados), **ainda não integrado** — falta só plugar o `google-services.json` + `@react-native-firebase` num dev build
 
 > A imagem dos pacientes é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% do FHIR.
 
@@ -47,10 +48,31 @@ src/features/patients  mappers, hooks, components, filters
 src/theme | src/components | src/hooks | src/stores | src/app
 ```
 
+## Decisões técnicas
+- **Contrato oRPC para a API FHIR**: mesmo sendo uma API externa, descrevi as rotas num contrato tipado (Zod). Os tipos de input/output fluem do contrato para os hooks, uma fonte única de verdade e menos erro na borda de rede.
+- **Camada de domínio (`mappers.ts`)**: os recursos crus do FHIR (verbosos e irregulares) viram um modelo enxuto antes de chegar na UI. Componentes ficam simples e os testes concentram na lógica pura.
+- **Paginação por cursor** (não offset): funciona igual no HAPI e no SMART, seguindo o `Bundle.link[next]` do FHIR.
+- **Avatar gerado pelo nome**: FHIR não traz foto do paciente; usei avatares determinísticos, comum em apps de saúde reais.
+- **Mapa via Leaflet em WebView** (não `react-native-maps`): mapa nativo exige chave do Google Maps; Leaflet/OSM é keyless, roda no Expo Go e no dev build, com clustering e avatares nos markers.
+- **Estado**: TanStack Query no servidor (cache + scroll infinito + persistência offline) e Zustand no cliente (favoritos).
+- **Qualidade**: oxlint + oxfmt e uma regra própria que proíbe `useEffect` fora de hooks; testes de unidade + e2e (Maestro).
+- **Analytics desacoplado**: `lib/analytics.ts` é uma camada de abstração (hoje via logger). Trocar o corpo por `logEvent(...)` ativa o Firebase sem tocar nas telas.
+
+## Possíveis melhorias futuras
+- **Configurações**: aba com tema (claro/escuro/sistema) e preferências persistidas.
+- **Firebase Analytics**: ativar a camada já preparada (falta o `google-services.json` + `@react-native-firebase` num dev build).
+- **Teclado nos bottom sheets**: `react-native-keyboard-controller` pro sheet subir junto com o teclado (precisa de dev build).
+- **Autenticação real** e multi-perfil (médico/recepção), coerente com um produto de clínica.
+- **Mais testes**: ampliar e2e (Maestro) e adicionar testes de componente (RN Testing Library).
+- **i18n e acessibilidade**: strings traduzíveis, labels/foco e contraste testado.
+- **Offline mais rico**: indicador de "sem conexão" e sincronização.
+- **Mapa**: heatmap de verdade e filtro por cidade direto no mapa.
+
 ## CI/CD
 - `ci.yml`: typecheck, lint, testes a cada push.
 - `build-apk.yml`: **build do APK no próprio GitHub Actions** (gradle no runner): gera o APK como artifact e cria um release. Rode em Actions, *Build APK (GitHub)*.
 - `build.yml`: alternativa via **EAS** na nuvem (requer secret `EXPO_TOKEN`).
+- `ota-update.yml`: publica **update OTA** (`eas update`) a cada push na `main` (requer `EXPO_TOKEN`).
 
 ## Screenshots
 
