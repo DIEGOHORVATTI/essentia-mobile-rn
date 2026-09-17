@@ -1,0 +1,99 @@
+name: Build APK (GitHub)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tipo:
+        description: Tipo de build
+        required: true
+        default: release
+        type: choice
+        options:
+          - release
+          - development
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: APK Android (${{ inputs.tipo }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Libera espaco em disco
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost \
+            /usr/local/lib/node_modules /usr/share/swift "$AGENT_TOOLSDIRECTORY" || true
+          sudo docker image prune --all --force || true
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Cache do Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Instala dependencias
+        run: bun install --frozen-lockfile
+
+      - name: Gera o projeto nativo Android
+        run: bunx expo prebuild --platform android --no-install
+
+      - name: Build do APK
+        run: |
+          cd android
+          chmod +x gradlew
+          if [ "${{ inputs.tipo }}" = "development" ]; then
+            tarefa=assembleDebug
+          else
+            tarefa=assembleRelease
+          fi
+          ./gradlew "$tarefa" --no-daemon --max-workers=2 --build-cache \
+            -x lint -x lintVitalRelease -Pandroid.lint.checkReleaseBuilds=false
+        env:
+          GRADLE_OPTS: -Dorg.gradle.jvmargs=-Xmx3g
+          ORG_GRADLE_PROJECT_reactNativeArchitectures: arm64-v8a
+
+      - name: Prepara o artefato
+        run: |
+          mkdir -p out
+          if [ "${{ inputs.tipo }}" = "development" ]; then
+            cp android/app/build/outputs/apk/debug/app-debug.apk out/essentia.apk
+          else
+            cp android/app/build/outputs/apk/release/app-release.apk out/essentia.apk
+          fi
+          ls -la out
+
+      - name: Upload do APK (aba Actions)
+        uses: actions/upload-artifact@v4
+        with:
+          name: essentia-apk
+          path: out/essentia.apk
+
+      - name: Cria Release com o APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ inputs.tipo == 'development' && 'dev-' || '' }}${{ github.run_number }}
+          name: Essentia Saude APK | build ${{ github.run_number }}
+          files: out/essentia.apk
+          body: |
+            APK do app Essentia Saude (assinado com debug key — instalavel).
+            Baixe `essentia.apk` e instale no Android (permitir "fontes desconhecidas").

@@ -1,12 +1,19 @@
 # Essentia Saúde, App de Pacientes (React Native + FHIR)
 
-App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies** — domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca (dourado).
+App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies**. Domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca (dourado).
 
 ## Funcionalidades
-- **Listagem** com imagem, nome e descrição + **scroll infinito** (cursor FHIR).
-- **Busca** por nome e **filtros** (gênero, status, cidade com autocomplete, ordenação) — tudo via API.
-- **Detalhe** do paciente + **condições clínicas** (ICD-10, status, datas) em bottom sheet.
-- **Favoritos** (aba própria), **skeletons** de loading, erro com retry, dark/light e splash animado.
+- [x] Listagem com imagem, nome e descrição + scroll infinito (cursor FHIR)
+- [x] Busca por nome e filtros (gênero, status, cidade com autocomplete, ordenação) via API
+- [x] Detalhe do paciente + condições clínicas (ICD-10, status, datas) em bottom sheet
+- [x] Favoritos (aba própria, persistência local)
+- [x] Mapa com clustering e avatares dos pacientes por localização
+- [x] Skeletons (shimmer), erro com retry, dark/light e splash animado
+- [x] Testes, CI (typecheck/lint/test) e build de APK no GitHub Actions
+- [ ] Aba de Configurações (tema claro/escuro/sistema)
+- [ ] Teclado nativo nos bottom sheets (`react-native-keyboard-controller`, dev build)
+- [ ] Firebase Analytics (abstração pronta em `lib/analytics.ts`)
+- [ ] Cache offline e testes e2e
 
 > A imagem é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% FHIR.
 
@@ -39,7 +46,8 @@ src/theme · src/components · src/hooks · src/stores · src/app
 
 ## CI/CD
 - `ci.yml` — typecheck → lint → testes a cada push.
-- `build.yml` — build Android na nuvem via **EAS** (requer secret `EXPO_TOKEN` + `eas init`).
+- `build-apk.yml` — **build do APK no próprio GitHub Actions** (gradle no runner): gera o APK como artifact e cria um release. Rode em Actions → *Build APK (GitHub)*.
+- `build.yml` — alternativa via **EAS** na nuvem (requer secret `EXPO_TOKEN`).
 
 ## Screenshots
 
@@ -52,6 +60,3 @@ src/theme · src/components · src/hooks · src/stores · src/app
   <img width="200" alt="Mapa" src="https://github.com/user-attachments/assets/94459fc0-db30-4166-9f98-20dcaec92a08" />
   <img width="200" alt="Splash" src="https://github.com/user-attachments/assets/a9b65f3a-07e5-4b17-ae1e-4b2d1db7027e" />
 </p>
-
-## Melhorias futuras
-Aba de Configurações (tema), teclado nos bottom sheets via `react-native-keyboard-controller` (dev build), Firebase Analytics (abstração já pronta em `lib/analytics.ts`), cache offline e testes e2e.
