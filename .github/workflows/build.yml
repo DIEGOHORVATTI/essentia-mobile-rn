@@ -1,0 +1,36 @@
+name: Build (EAS)
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: Perfil de build EAS
+        default: preview
+        type: choice
+        options:
+          - development
+          - preview
+          - production
+
+jobs:
+  build:
+    name: Build Android (${{ inputs.profile }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Instala dependencias
+        run: bun install --frozen-lockfile
+
+      - name: Build na nuvem (EAS)
+        run: eas build --platform android --profile ${{ inputs.profile }} --non-interactive --no-wait
