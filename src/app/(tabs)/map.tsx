@@ -17,7 +17,7 @@ export default function MapScreen() {
   useScreenView('map')
 
   return (
-    <Screen edges={['top']}>
+    <Screen edges={[]}>
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color={colors.primary} />
