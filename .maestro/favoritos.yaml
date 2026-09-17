@@ -1,0 +1,10 @@
+appId: com.essentia.saude
+---
+- launchApp
+- assertVisible: 'Adicionar aos favoritos'
+- tapOn:
+    text: 'Adicionar aos favoritos'
+    index: 0
+- tapOn: 'Favoritos'
+- assertVisible: 'Favoritos'
+- assertNotVisible: 'Nenhum favorito ainda'

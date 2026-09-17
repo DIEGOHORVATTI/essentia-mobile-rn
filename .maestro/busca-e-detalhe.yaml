@@ -1,0 +1,15 @@
+appId: com.essentia.saude
+---
+- launchApp
+- assertVisible: 'Buscar paciente por nome'
+- tapOn: 'Buscar paciente por nome'
+- inputText: 'maria'
+- assertVisible:
+    text: '.*Maria.*'
+- tapOn:
+    text: '.*Maria.*'
+    index: 0
+- assertVisible: 'Dados do paciente'
+- assertVisible: 'Condicoes clinicas'
+- back
+- assertVisible: 'Pacientes'
