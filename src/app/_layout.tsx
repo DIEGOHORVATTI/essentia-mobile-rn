@@ -1,7 +1,7 @@
 import '@/global.css'
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import { QueryClientProvider } from '@tanstack/react-query'
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
@@ -9,7 +9,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { palette, useIsDark } from '@/theme'
+import { timeRangeToMs } from '@/lib/time'
 import { queryClient } from '@/lib/query-client'
+import { queryPersister } from '@/lib/query-persister'
 import { SplashOverlay } from '@/components/splash-overlay'
 import { useBoolean } from '@/hooks/use-boolean'
 import { useAppStartup } from '@/hooks/use-app-startup'
@@ -44,7 +46,10 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{ persister: queryPersister, maxAge: timeRangeToMs({ days: 1 }) }}
+        >
           <ThemeProvider value={navTheme(isDark)}>
             <BottomSheetModalProvider>
               <StatusBar style={isDark ? 'light' : 'dark'} />
@@ -63,7 +68,7 @@ export default function RootLayout() {
               {splash.value ? <SplashOverlay onFinish={splash.onFalse} /> : null}
             </BottomSheetModalProvider>
           </ThemeProvider>
-        </QueryClientProvider>
+        </PersistQueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   )
