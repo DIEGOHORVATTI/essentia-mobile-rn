@@ -1,4 +1,4 @@
-# Essentia Saúde — App de Pacientes (React Native + FHIR)
+# Essentia Saúde, App de Pacientes (React Native + FHIR)
 
 App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies** — domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca (dourado).
 
