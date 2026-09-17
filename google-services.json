@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252463072557",
+    "project_id": "essentia-saude-79960",
+    "storage_bucket": "essentia-saude-79960.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252463072557:android:2f122e755db220172c7fa4",
+        "android_client_info": {
+          "package_name": "com.essentia.saude"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDd46hWaXZLWo1n4eNi5eTo3TsIUw792k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
