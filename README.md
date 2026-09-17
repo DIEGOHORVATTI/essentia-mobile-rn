@@ -24,9 +24,18 @@ Fala pessoal esse é um app mobile de consulta de **pacientes** que consome a **
 > A imagem dos pacientes é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% do FHIR.
 
 ## Rodar
+
+### Testar (recomendado): baixar o APK
+O app usa módulos nativos (Firebase, mapa), então **não roda no Expo Go**. O jeito mais fácil de testar é baixar o APK já buildado:
+
+> **[Baixar o `essentia.apk` no último Release](https://github.com/DIEGOHORVATTI/essentia-mobile-rn/releases/latest)** e instalar no Android (permitir "fontes desconhecidas").
+
+Um APK novo sai em **Actions -> Build APK (GitHub) -> Run workflow** (ou por tag `v*`).
+
+### Rodar do código (dev build)
 ```bash
 bun install
-bun start 
+bunx expo run:android   # gera e instala o dev build no dispositivo/emulador
 ```
 
 ## Libs e por quê
