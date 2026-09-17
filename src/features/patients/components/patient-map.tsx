@@ -33,7 +33,7 @@ function buildHtml(patients: GeoPatient[], dark: boolean): string {
   <style>
     html, body, #map { height: 100%; margin: 0; background: ${dark ? '#0c1112' : '#f5f1ed'}; }
     .leaflet-popup-content { text-align: center; font-family: -apple-system, Roboto, sans-serif; }
-    .btn { margin-top: 6px; padding: 6px 12px; border: none; border-radius: 8px; background: #b29b62; color: #14120c; font-weight: 700; }
+    .btn { margin-top: 6px; padding: 6px 12px; border: none; border-radius: 8px; background: #b29b62; color: ${dark ? '#ffffff' : '#14120c'}; font-weight: 700; }
     .avatar-marker img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #b29b62; box-shadow: 0 2px 6px rgba(0,0,0,.5); background: #141b1d; }
     .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgba(178,155,98,.35); }
     .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div { background: #b29b62; color: #ffffff; font-weight: 700; }
