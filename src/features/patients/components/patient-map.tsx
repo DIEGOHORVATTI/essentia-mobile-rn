@@ -11,8 +11,6 @@ type PatientMapProps = {
 }
 
 function buildHtml(patients: GeoPatient[], dark: boolean): string {
-  const osmClass = dark ? 'dark-tiles' : ''
-
   const points = JSON.stringify(
     patients.map((patient) => ({
       id: patient.id,
@@ -39,8 +37,6 @@ function buildHtml(patients: GeoPatient[], dark: boolean): string {
     .avatar-marker img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #b29b62; box-shadow: 0 2px 6px rgba(0,0,0,.5); background: #141b1d; }
     .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgba(178,155,98,.35); }
     .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div { background: #b29b62; color: #14120c; font-weight: 700; }
-    .dark-tiles { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9); }
-    .leaflet-control-layers { border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -53,13 +49,7 @@ function buildHtml(patients: GeoPatient[], dark: boolean): string {
 
     var data = ${points};
     var map = L.map('map', { zoomControl: false }).setView([42.3, -71.8], 8);
-
-    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap', maxZoom: 19, className: '${osmClass}' });
-    var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri', maxZoom: 19 });
-    var streets = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri', maxZoom: 19 });
-
-    osm.addTo(map);
-    L.control.layers({ 'Padrao': osm, 'Satelite': satellite, 'Ruas': streets }, null, { position: 'topright', collapsed: true }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri', maxZoom: 19 }).addTo(map);
 
     var cluster = L.markerClusterGroup({ maxClusterRadius: 55, showCoverageOnHover: false });
     var bounds = [];
