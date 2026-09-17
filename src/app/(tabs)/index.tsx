@@ -30,7 +30,7 @@ export default function PatientsScreen() {
 
   return (
     <Screen edges={['top']}>
-      <View className="flex-row items-center gap-2 px-4 pt-3">
+      <View className="flex-row items-center gap-2 bg-bg-primary px-4 pb-3 pt-2">
         <View className="flex-1">
           <SearchBar value={search} onChangeText={setSearch} />
         </View>
