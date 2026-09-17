@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router'
 import { MapPinned } from 'lucide-react-native'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { ActivityIndicator, View } from 'react-native'
 
 import { useThemeColors } from '@/theme'
 import { Screen } from '@/components/ui/screen'
@@ -18,11 +18,6 @@ export default function MapScreen() {
 
   return (
     <Screen edges={['top']}>
-      <View className="px-4 pb-2 pt-3">
-        <Text className="text-2xl font-bold text-text-primary">Mapa</Text>
-        <Text className="text-xs text-text-muted">Pacientes por localizacao</Text>
-      </View>
-
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color={colors.primary} />
