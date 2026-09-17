@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "import",
+    "oxc",
+    "unicorn",
+    "react"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-explicit-any": "error",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "consistent-type-imports": "warn",
+    "no-non-null-assertion": "off",
+    "no-array-index-key": "off",
+    "arrow-body-style": "error",
+    "object-shorthand": "warn",
+    "no-useless-rename": "warn",
+    "default-case-last": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-anonymous-default-export": "error",
+    "react/immutability": "off"
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.expo/**",
+    "metro.config.js",
+    "postcss.config.js"
+  ]
+}
