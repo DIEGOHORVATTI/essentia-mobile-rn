@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router'
-import { Heart, Users } from 'lucide-react-native'
+import { Heart, MapPinned, Users } from 'lucide-react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { TAB_BAR_HEIGHT } from '@/constants/tab-bar'
@@ -32,6 +32,13 @@ export default function TabsLayout() {
         options={{
           title: 'Pacientes',
           tabBarIcon: ({ color }) => <Users size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: 'Mapa',
+          tabBarIcon: ({ color }) => <MapPinned size={24} color={color} />,
         }}
       />
       <Tabs.Screen
