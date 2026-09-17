@@ -1,4 +1,8 @@
-# Essentia Saúde, App de Pacientes (React Native + FHIR)
+<p align="center">
+  <img src="assets/images/icon.png" width="88" alt="Essentia Saude" />
+</p>
+
+<h1 align="center">Essentia Saúde, App de Pacientes (React Native + FHIR)</h1>
 
 App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies**. Domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca (dourado).
 
@@ -10,10 +14,11 @@ App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (
 - [x] Mapa com clustering e avatares dos pacientes por localização
 - [x] Skeletons (shimmer), erro com retry, dark/light e splash animado
 - [x] Testes, CI (typecheck/lint/test) e build de APK no GitHub Actions
+- [x] Cache offline (persistência do TanStack Query em AsyncStorage)
+- [x] Testes e2e (fluxos Maestro em `.maestro/`)
 - [ ] Aba de Configurações (tema claro/escuro/sistema)
 - [ ] Teclado nativo nos bottom sheets (`react-native-keyboard-controller`, dev build)
 - [ ] Firebase Analytics (abstração pronta em `lib/analytics.ts`)
-- [ ] Cache offline e testes e2e
 
 > A imagem é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% FHIR.
 
@@ -23,6 +28,7 @@ bun install
 bun start          # Expo Go (QR)  |  bun run android
 bun run ci         # typecheck + lint + testes
 bun run smoke:fhir # testa a integração FHIR sem subir o app
+maestro test .maestro  # e2e (requer o Maestro CLI + o app instalado)
 ```
 
 ## Libs e por quê
