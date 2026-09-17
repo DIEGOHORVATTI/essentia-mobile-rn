@@ -41,24 +41,17 @@ src/theme · src/components · src/hooks · src/stores · src/app
 - `ci.yml` — typecheck → lint → testes a cada push.
 - `build.yml` — build Android na nuvem via **EAS** (requer secret `EXPO_TOKEN` + `eas init`).
 
+## Screenshots
+
+<p align="center">
+  <img width="200" alt="Pacientes" src="https://github.com/user-attachments/assets/55bee660-9b40-405d-9c95-e8a044482b16" />
+  <img width="200" alt="Detalhe" src="https://github.com/user-attachments/assets/efa3995f-00b0-4f2a-98ca-fbca85829c54" />
+  <img width="200" alt="Condicoes" src="https://github.com/user-attachments/assets/9351305f-ab30-4779-9bb4-5957b8c9881a" />
+  <img width="200" alt="Filtros" src="https://github.com/user-attachments/assets/59edf547-10c2-4eb0-8d6c-735abb21414b" />
+  <img width="200" alt="Favoritos" src="https://github.com/user-attachments/assets/468b6fc5-52bd-40c4-afd0-dd57482345fd" />
+  <img width="200" alt="Mapa" src="https://github.com/user-attachments/assets/94459fc0-db30-4166-9f98-20dcaec92a08" />
+  <img width="200" alt="Splash" src="https://github.com/user-attachments/assets/a9b65f3a-07e5-4b17-ae1e-4b2d1db7027e" />
+</p>
+
 ## Melhorias futuras
-Aba de Mapa (markers por cidade), aba de Configurações (tema), teclado nos sheets via `react-native-keyboard-controller` (dev build), Firebase Analytics (abstração já pronta em `lib/analytics.ts`), testes e2e.
-
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/55bee660-9b40-405d-9c95-e8a044482b16" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/efa3995f-00b0-4f2a-98ca-fbca85829c54" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/9351305f-ab30-4779-9bb4-5957b8c9881a" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/59edf547-10c2-4eb0-8d6c-735abb21414b" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/468b6fc5-52bd-40c4-afd0-dd57482345fd" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/94459fc0-db30-4166-9f98-20dcaec92a08" />
-
-<img width="702" height="1600" alt="image" src="https://github.com/user-attachments/assets/a9b65f3a-07e5-4b17-ae1e-4b2d1db7027e" />
-
-
-
-
+Aba de Configurações (tema), teclado nos bottom sheets via `react-native-keyboard-controller` (dev build), Firebase Analytics (abstração já pronta em `lib/analytics.ts`), cache offline e testes e2e.
