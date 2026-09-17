@@ -38,6 +38,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "92a5b66a-d22b-4896-a095-7a1e16f2859d"
+      }
+    },
+    "owner": "diegohorvatti"
   }
 }
