@@ -32,28 +32,28 @@ maestro test .maestro  # e2e (requer o Maestro CLI + o app instalado)
 ```
 
 ## Libs e por quê
-- **Expo Router + TypeScript** — base e navegação por arquivos, tipada.
-- **oRPC + Zod** — a API FHIR vira um **contrato tipado**; os tipos fluem pros hooks.
-- **TanStack Query** — cache, `useInfiniteQuery` (scroll infinito), retry/refetch.
-- **Zustand** — favoritos locais, sem boilerplate.
-- **NativeWind (Tailwind)** — `className` + tokens de tema.
-- **@gorhom/bottom-sheet** — filtros e detalhe de condição.
-- **oxlint + oxfmt** — lint/format rápidos (regra: `useEffect` só em hooks).
-- **bun test** — testes da lógica pura (mappers, format, favoritos).
+- **Expo Router + TypeScript**: base e navegação por arquivos, tipada.
+- **oRPC + Zod**: a API FHIR vira um **contrato tipado**; os tipos fluem pros hooks.
+- **TanStack Query**: cache, `useInfiniteQuery` (scroll infinito), retry/refetch.
+- **Zustand**: favoritos locais, sem boilerplate.
+- **NativeWind (Tailwind)**: `className` + tokens de tema.
+- **@gorhom/bottom-sheet**: filtros e detalhe de condição.
+- **oxlint + oxfmt**: lint/format rápidos (regra: `useEffect` só em hooks).
+- **bun test**: testes da lógica pura (mappers, format, favoritos).
 
 ## Arquitetura
-Por feature. A **borda de rede é tipada por contrato** e os dados crus do FHIR são traduzidos para um **modelo de domínio** (`mappers.ts`) antes da UI — os testes ficam na lógica pura.
+Por feature. A **borda de rede é tipada por contrato** e os dados crus do FHIR são traduzidos para um **modelo de domínio** (`mappers.ts`) antes da UI: os testes ficam na lógica pura.
 ```
 src/contracts  contrato oRPC/FHIR (fonte de tipos)
 src/lib        client FHIR, query client, utils
 src/features/patients  mappers, hooks, components, filters
-src/theme · src/components · src/hooks · src/stores · src/app
+src/theme | src/components | src/hooks | src/stores | src/app
 ```
 
 ## CI/CD
-- `ci.yml` — typecheck → lint → testes a cada push.
-- `build-apk.yml` — **build do APK no próprio GitHub Actions** (gradle no runner): gera o APK como artifact e cria um release. Rode em Actions → *Build APK (GitHub)*.
-- `build.yml` — alternativa via **EAS** na nuvem (requer secret `EXPO_TOKEN`).
+- `ci.yml`: typecheck, lint, testes a cada push.
+- `build-apk.yml`: **build do APK no próprio GitHub Actions** (gradle no runner): gera o APK como artifact e cria um release. Rode em Actions, *Build APK (GitHub)*.
+- `build.yml`: alternativa via **EAS** na nuvem (requer secret `EXPO_TOKEN`).
 
 ## Screenshots
 
