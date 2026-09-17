@@ -13,6 +13,8 @@ export type Patient = {
   email?: string
   active: boolean
   avatarUrl: string
+  lat?: number
+  lng?: number
 }
 
 export type Condition = {
@@ -108,6 +110,13 @@ function findTelecom(patient: PatientResource, system: string): string | undefin
   return patient.telecom?.find((t) => t.system === system && t.value)?.value
 }
 
+function geoFromAddress(address: PatientResource['address']): { lat?: number; lng?: number } {
+  const geolocation = address?.[0]?.extension?.find((ext) => ext.url.includes('geolocation'))
+  const lat = geolocation?.extension?.find((ext) => ext.url === 'latitude')?.valueDecimal
+  const lng = geolocation?.extension?.find((ext) => ext.url === 'longitude')?.valueDecimal
+  return { lat, lng }
+}
+
 export function toPatient(resource: PatientResource): Patient {
   const fullName = fullNameFromFhir(resource.name)
   const gender = resource.gender ?? 'unknown'
@@ -125,6 +134,7 @@ export function toPatient(resource: PatientResource): Patient {
     email: findTelecom(resource, 'email'),
     active: resource.active ?? true,
     avatarUrl: avatarUrlFor(fullName),
+    ...geoFromAddress(resource.address),
   }
 }
 

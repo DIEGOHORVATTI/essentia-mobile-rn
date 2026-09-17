@@ -7,12 +7,18 @@ export const humanNameSchema = z.object({
   prefix: z.array(z.string()).optional(),
 })
 
+export const geolocationExtensionSchema = z.object({
+  url: z.string(),
+  extension: z.array(z.object({ url: z.string(), valueDecimal: z.number().optional() })).optional(),
+})
+
 export const addressSchema = z.object({
   line: z.array(z.string()).optional(),
   city: z.string().optional(),
   state: z.string().optional(),
   postalCode: z.string().optional(),
   country: z.string().optional(),
+  extension: z.array(geolocationExtensionSchema).optional(),
 })
 
 export const telecomSchema = z.object({
