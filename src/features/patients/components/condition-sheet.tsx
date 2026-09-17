@@ -40,7 +40,7 @@ export const ConditionSheet = forwardRef<BottomSheetModal, ConditionSheetProps>(
       >
         <BottomSheetView style={{ paddingBottom: insets.bottom + 24 }}>
           <View className="gap-4 px-6 pt-2">
-            <Text className="text-xl font-bold text-text-primary">{condition?.label ?? '—'}</Text>
+            <Text className="text-xl font-bold text-text-primary">{condition?.label}</Text>
 
             <View className="gap-3 rounded-2xl border border-border bg-bg-card p-4">
               <Row
@@ -77,12 +77,14 @@ export const ConditionSheet = forwardRef<BottomSheetModal, ConditionSheetProps>(
 )
 
 function Row({ icon, label, value }: { icon: ReactNode; label: string; value?: string }) {
+  if (!value || value.length === 0) return null
+
   return (
     <View className="flex-row items-center gap-3">
       {icon}
       <Text className="w-24 text-base text-text-secondary">{label}</Text>
       <Text className="flex-1 text-right text-base text-text-primary" numberOfLines={2}>
-        {value && value.length > 0 ? value : '—'}
+        {value}
       </Text>
     </View>
   )

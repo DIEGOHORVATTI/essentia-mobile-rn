@@ -100,15 +100,17 @@ export function PatientDetail({ id }: { id: string }) {
 
         <Section title="Dados do paciente">
           <View className="rounded-2xl border border-border bg-bg-secondary px-4">
-            {info.map((item, index) => (
-              <InfoRow
-                key={item.label}
-                icon={item.icon}
-                label={item.label}
-                value={item.value}
-                divider={index < info.length - 1}
-              />
-            ))}
+            {info
+              .filter((item) => item.value && item.value.length > 0)
+              .map((item, index, list) => (
+                <InfoRow
+                  key={item.label}
+                  icon={item.icon}
+                  label={item.label}
+                  value={item.value}
+                  divider={index < list.length - 1}
+                />
+              ))}
           </View>
         </Section>
 
@@ -206,7 +208,7 @@ function InfoRow({
       <Icon size={18} color={colors.textMuted} />
       <Text className="w-24 text-base text-text-secondary">{label}</Text>
       <Text className="flex-1 text-right text-base text-text-primary" numberOfLines={1}>
-        {value && value.length > 0 ? value : '—'}
+        {value}
       </Text>
     </View>
   )
