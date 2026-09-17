@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/icon.png" width="88" alt="Essentia Saude" />
+  <img src="assets/images/logo.png" width="96" alt="Essentia Saude" />
 </p>
 
 <h1 align="center">Essentia Saúde, App de Pacientes (React Native + FHIR)</h1>
