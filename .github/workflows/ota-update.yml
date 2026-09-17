@@ -7,6 +7,8 @@ on:
         description: Branch do EAS Update
         default: production
         type: string
+  push:
+    branches: [main]
 
 jobs:
   update:

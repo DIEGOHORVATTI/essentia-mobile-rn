@@ -80,7 +80,7 @@ src/theme | src/components | src/hooks | src/stores | src/app
 - `ci.yml`: typecheck, lint, testes a cada push.
 - `build-apk.yml`: **build do APK no próprio GitHub Actions** (gradle no runner): gera o APK como artifact e cria um release. Rode em Actions, *Build APK (GitHub)*.
 - `build.yml`: alternativa via **EAS** na nuvem (requer secret `EXPO_TOKEN`).
-- `ota-update.yml`: publica **update OTA** (`eas update`) manualmente em Actions (requer secret `EXPO_TOKEN`).
+- `ota-update.yml`: publica **update OTA** (`eas update`) a cada push na `main` (secret `EXPO_TOKEN` configurado).
 
 ## Screenshots
 
