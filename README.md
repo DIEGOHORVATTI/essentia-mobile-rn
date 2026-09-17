@@ -4,7 +4,7 @@
 
 <h1 align="center">Essentia Saúde, App de Pacientes (React Native + FHIR)</h1>
 
-App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies**. Domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca (dourado).
+Fala pessoal esse é um app mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies**. Fiz um domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca um dark com um dourado pelo menos do site principal do grupo.
 
 ## Funcionalidades
 - [x] Listagem com imagem, nome e descrição + scroll infinito (cursor FHIR)
@@ -18,17 +18,14 @@ App mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (
 - [x] Testes e2e (fluxos Maestro em `.maestro/`)
 - [ ] Aba de Configurações (tema claro/escuro/sistema)
 - [ ] Teclado nativo nos bottom sheets (`react-native-keyboard-controller`, dev build)
-- [ ] Firebase Analytics (abstração pronta em `lib/analytics.ts`)
+- [ ] Firebase Analytics (abstração pronta em `lib/analytics.ts`) não vi necessidade de usar nem consigui pensar em um case de uso kk
 
-> A imagem é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% FHIR.
+> A imagem dos pacientes é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% do FHIR.
 
 ## Rodar
 ```bash
 bun install
-bun start          # Expo Go (QR)  |  bun run android
-bun run ci         # typecheck + lint + testes
-bun run smoke:fhir # testa a integração FHIR sem subir o app
-maestro test .maestro  # e2e (requer o Maestro CLI + o app instalado)
+bun start 
 ```
 
 ## Libs e por quê
@@ -65,4 +62,5 @@ src/theme | src/components | src/hooks | src/stores | src/app
   <img width="200" alt="Favoritos" src="https://github.com/user-attachments/assets/468b6fc5-52bd-40c4-afd0-dd57482345fd" />
   <img width="200" alt="Mapa" src="https://github.com/user-attachments/assets/94459fc0-db30-4166-9f98-20dcaec92a08" />
   <img width="200" alt="Splash" src="https://github.com/user-attachments/assets/a9b65f3a-07e5-4b17-ae1e-4b2d1db7027e" />
+  <img width="200" alt="image" src="https://github.com/user-attachments/assets/c25db4a7-9d5c-42b9-8f9d-b03b876d70eb" />
 </p>
