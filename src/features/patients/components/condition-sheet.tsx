@@ -4,14 +4,7 @@ import {
   BottomSheetModal,
   BottomSheetView,
 } from '@gorhom/bottom-sheet'
-import {
-  CalendarClock,
-  CalendarPlus,
-  CircleDot,
-  Hash,
-  ShieldCheck,
-  Stethoscope,
-} from 'lucide-react-native'
+import { CalendarClock, CalendarPlus, CircleDot, Hash, ShieldCheck } from 'lucide-react-native'
 import { forwardRef, type ReactNode, useCallback } from 'react'
 import { Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -47,10 +40,6 @@ export const ConditionSheet = forwardRef<BottomSheetModal, ConditionSheetProps>(
       >
         <BottomSheetView style={{ paddingBottom: insets.bottom + 24 }}>
           <View className="gap-4 px-6 pt-2">
-            <View className="h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft">
-              <Stethoscope size={22} color={colors.primary} />
-            </View>
-
             <Text className="text-xl font-bold text-text-primary">{condition?.label ?? '—'}</Text>
 
             <View className="gap-3 rounded-2xl border border-border bg-bg-card p-4">
