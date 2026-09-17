@@ -1,0 +1,51 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+
+@import 'nativewind/theme';
+
+@theme {
+  --color-primary: #c4ad72;
+  --color-primary-dark: #b29b62;
+  --color-primary-soft: #2b2a20;
+  --color-on-accent: #14120c;
+
+  --color-bg-primary: #0c1112;
+  --color-bg-secondary: #141b1d;
+  --color-bg-card: #1c2426;
+  --color-bg-input: #1c2426;
+
+  --color-text-primary: #f1f5f5;
+  --color-text-secondary: #b4c0c0;
+  --color-text-muted: #7c8a8a;
+
+  --color-border: #26312f;
+
+  --color-success: #4fb489;
+  --color-warning: #d9b45f;
+  --color-danger: #e08a80;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary: #b29b62;
+    --color-primary-dark: #8f7d4e;
+    --color-primary-soft: #efe7d3;
+    --color-on-accent: #14120c;
+
+    --color-bg-primary: #f5f1ed;
+    --color-bg-secondary: #ffffff;
+    --color-bg-card: #efe9e1;
+    --color-bg-input: #efe9e1;
+
+    --color-text-primary: #222222;
+    --color-text-secondary: #626262;
+    --color-text-muted: #8a857c;
+
+    --color-border: #e4ddd2;
+
+    --color-success: #3f7d5f;
+    --color-warning: #b58a3c;
+    --color-danger: #c04a3f;
+  }
+}
