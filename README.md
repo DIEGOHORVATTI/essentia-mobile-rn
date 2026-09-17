@@ -17,9 +17,9 @@ Fala pessoal esse é um app mobile de consulta de **pacientes** que consome a **
 - [x] Cache offline (persistência do TanStack Query em AsyncStorage)
 - [x] Testes e2e (fluxos Maestro em `.maestro/`)
 - [x] OTA updates (expo-updates + EAS Update)
+- [x] Firebase Analytics integrado (`@react-native-firebase`, eventos instrumentados em `lib/analytics.ts`)
 - [ ] Aba de Configurações (tema claro/escuro/sistema)
 - [ ] Teclado nativo nos bottom sheets (`react-native-keyboard-controller`, dev build)
-- [ ] Firebase Analytics: **camada de abstração pronta** em `lib/analytics.ts` (eventos já instrumentados), **ainda não integrado** — falta só plugar o `google-services.json` + `@react-native-firebase` num dev build
 
 > A imagem dos pacientes é um **avatar gerado pelo nome** (FHIR não traz foto); os dados são 100% do FHIR.
 
@@ -56,11 +56,10 @@ src/theme | src/components | src/hooks | src/stores | src/app
 - **Mapa via Leaflet em WebView** (não `react-native-maps`): mapa nativo exige chave do Google Maps; Leaflet/OSM é keyless, roda no Expo Go e no dev build, com clustering e avatares nos markers.
 - **Estado**: TanStack Query no servidor (cache + scroll infinito + persistência offline) e Zustand no cliente (favoritos).
 - **Qualidade**: oxlint + oxfmt e uma regra própria que proíbe `useEffect` fora de hooks; testes de unidade + e2e (Maestro).
-- **Analytics desacoplado**: `lib/analytics.ts` é uma camada de abstração (hoje via logger). Trocar o corpo por `logEvent(...)` ativa o Firebase sem tocar nas telas.
+- **Analytics**: `lib/analytics.ts` abstrai a telemetria e envia os eventos ao **Firebase Analytics** (`@react-native-firebase`), com fallback quando o módulo nativo não está presente (ex.: Expo Go). Só roda em dev build/APK.
 
 ## Possíveis melhorias futuras
 - **Configurações**: aba com tema (claro/escuro/sistema) e preferências persistidas.
-- **Firebase Analytics**: ativar a camada já preparada (falta o `google-services.json` + `@react-native-firebase` num dev build).
 - **Teclado nos bottom sheets**: `react-native-keyboard-controller` pro sheet subir junto com o teclado (precisa de dev build).
 - **Autenticação real** e multi-perfil (médico/recepção), coerente com um produto de clínica.
 - **Mais testes**: ampliar e2e (Maestro) e adicionar testes de componente (RN Testing Library).
