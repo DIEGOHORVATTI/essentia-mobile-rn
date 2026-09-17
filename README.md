@@ -1,8 +1,7 @@
-<p align="center">
-  <img src="assets/images/logo.png" width="96" alt="Essentia Saude" />
-</p>
-
-<h1 align="center">Essentia Saúde, App de Pacientes (React Native + FHIR)</h1>
+<h2>
+  <img src="assets/images/logo.png" width="38" align="left" alt="Essentia Saude" />
+  &nbsp;Essentia Saúde, App de Pacientes (React Native + FHIR)
+</h2>
 
 Fala pessoal esse é um app mobile de consulta de **pacientes** que consome a **API pública FHIR R4** (padrão mundial de interoperabilidade em saúde). Case técnico para a vaga de Dev Mobile na **Essentia Technologies**. Fiz um domínio alinhado ao produto deles (gestão de clínicas), com dados 100% públicos e identidade da marca um dark com um dourado pelo menos do site principal do grupo.
 
