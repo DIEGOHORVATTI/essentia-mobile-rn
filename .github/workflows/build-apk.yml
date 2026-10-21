@@ -85,6 +85,7 @@ jobs:
         with:
           name: essentia-apk
           path: out/essentia.apk
+          retention-days: 7
 
       - name: Cria Release com o APK
         uses: softprops/action-gh-release@v2
